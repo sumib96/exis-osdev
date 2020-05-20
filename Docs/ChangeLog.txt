@@ -1,0 +1,2 @@
+2020.Maj
+- x86-64 Paging implementation / initialization for Exis kernel module
