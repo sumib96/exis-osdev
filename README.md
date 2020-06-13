@@ -9,6 +9,16 @@ Shy try for a modern Operating System.
 - Component based build system
 - Prepared for future data management
 
+# Source Directory Description
+## Boot
+- UEFI bootloader sources, any other boot manager for Exis
+## Build
+- Build system scripts and utilities
+## Docs
+- Documentation
+## Source
+- OS source code organized in execution privilege (rings) / API level / module hierarchy
+
 # Developers
 Tibor P., sumib96, (c) 2019 - 2020
 Execution Interface System
