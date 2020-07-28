@@ -1,2 +1,4 @@
 2020.Maj
 - x86-64 Paging implementation / initialization for Exis kernel module
+2020.Jul
+- UEFIEXL, file loader module

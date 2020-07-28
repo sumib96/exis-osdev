@@ -1,1 +1,6 @@
 Starting with Exis module
+
+Conventions:
+- Building on Windows
+- Using LLVM/LLD
+- Using Intel Syntax ASM
