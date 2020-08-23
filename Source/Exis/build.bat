@@ -1,3 +1,9 @@
-clang -c -m64 --target=i686-pc-none-elf -Wall -Werror -ffreestanding -fno-pic -fno-builtin -nostdlib -nostdinc -Ikernel -O2 -flto -g Kernel.c
-ld.lld --strip-all -nostdlib -T link.ld Kernel.o -o Kernel.elf
-copy "C:\Users\MainDev\Documents\GitHub\exis-osdev\Source\Exis\Kernel.elf" "C:\Users\MainDev\Desktop\VisualUefi-master\samples\x64\Release" /y
+@echo off
+
+set Sources="UEFI\Graphics.c" "Kernel.c" "Debug\Console.c"
+set Objects="Graphics.o" "Kernel.o" "Console.o"
+
+clang -c -m64 --target=i686-pc-none-elf -Wall -Werror -ffreestanding -fno-pic -fno-builtin -nostdlib -nostdinc -Ikernel -O2 -flto -g %Sources%
+ld.lld --strip-all -nostdlib -T link.ld %Objects% -o Kernel.elf
+
+copy "Kernel.elf" "C:\!Pro\Repo\VisualUefi\samples\x64\Release" /y
