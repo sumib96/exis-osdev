@@ -9,6 +9,12 @@ Shy try for a modern Operating System.
 - Component based build system
 - Prepared for future data management
 
+# UI (HumanFlowUI)
+- Independent UI system from the application source
+- Cross platform / arch
+- The ability to develop the UI framework without touching the app logic sources
+- Backward and forward compatibility?
+
 # Source Directory Description
 ## Boot
 - UEFI bootloader sources, any other boot manager for Exis

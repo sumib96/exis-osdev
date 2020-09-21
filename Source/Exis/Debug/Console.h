@@ -1,6 +1,6 @@
 // Only UTF-8
 #include "..\BaseTypes.h"
 
-//unsigned char *font;
- 
-VOID DrawChar(UCHAR Char, INT x, INT y, UINT32 Color);
+VOID DrawPixel(INT x, INT y, UINT32 color);
+VOID DrawChar(CHAR c, INT x, INT y, UINT32 color);
+VOID DrawString(const CHAR* str, INT x, INT y, UINT32 color);
