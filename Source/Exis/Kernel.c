@@ -15,7 +15,7 @@ typedef struct {
 
 #define EAPI __attribute((ms_abi)) // XD
 
-VOID PrepareACPI(BootInfo* bootInfo)
+VOID DebugPrintACPI(BootInfo* bootInfo)
 {
     ACPI_SDT_HEADER* xsdt = (ACPI_SDT_HEADER*)(bootInfo->RSDP->XsdtAddress);
 
@@ -30,6 +30,14 @@ VOID PrepareACPI(BootInfo* bootInfo)
         PutChar(' ');
     }
     Next();
+}
+
+VOID PrepareACPI(BootInfo* bootInfo)
+{
+    ACPI_SDT_HEADER* xsdt = (ACPI_SDT_HEADER*)(bootInfo->RSDP->XsdtAddress);
+
+    ACPI_MCFG_HEADER* mcfg = (ACPI_MCFG_HEADER*)FindTable(xsdt, (CHAR*)"MCFG");
+	Print(IntToHex((UINT64)mcfg), ColorToUINT32(255, 255, 255, 255));
 }
 
 void EAPI main(BootInfo* bootInfo)
