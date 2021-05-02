@@ -6,7 +6,8 @@
 	],
 	"settings": {
 		"files.associations": {
-			"graphics.h": "c"
+			"graphics.h": "c",
+			"console.h": "c"
 		}
 	}
 }

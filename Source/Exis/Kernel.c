@@ -1,8 +1,9 @@
 #include "BaseTypes.h"
-#include "UEFI\UEFI.h" // BootInfo, First baby step for memory management
+#include "UEFI\BootInfo.h" // BootInfo, First baby step for memory management
 #include "UEFI\Graphics.h"
 #include "Debug\Console.h"
 #include "Memory\Alloc.h"
+#include "ACPI\ACPI.h"
 
 typedef struct {
   UINT32 Type;
@@ -12,9 +13,26 @@ typedef struct {
   UINT64 Attribute;
 } EFI_MEMORY_DESCRIPTOR;
 
-//#define EAPI __fastcall
+#define EAPI __attribute((ms_abi)) // XD
 
-void main(BootInfo* bootInfo)
+VOID PrepareACPI(BootInfo* bootInfo)
+{
+    ACPI_SDT_HEADER* xsdt = (ACPI_SDT_HEADER*)(bootInfo->RSDP->XsdtAddress);
+
+    int entries = (xsdt->Length - sizeof(ACPI_SDT_HEADER)) / 8;
+    for (int i = 0; i < entries; i++)
+    {
+        ACPI_SDT_HEADER* newSdtHeader = (ACPI_SDT_HEADER*)*(UINT64*)((UINT64)xsdt + sizeof(ACPI_SDT_HEADER) + (i * 8));
+        for (int j = 0; j < 4; j++)
+        {
+            PutChar((CHAR)newSdtHeader->Signature[j]);
+        }
+        PutChar(' ');
+    }
+    Next();
+}
+
+void EAPI main(BootInfo* bootInfo)
 {
 	UINT32 White = ColorToUINT32(255, 255, 255, 255);
 	UINT32 Black = ColorToUINT32(0, 0, 0, 0);
@@ -47,12 +65,15 @@ void main(BootInfo* bootInfo)
 	CursorPosition.X = 0;
     CursorPosition.Y = 0;
 
-	for (int i = 0; i < 10; i++)
-	{
-		Print("FASZOMAT! ", White);
-		CursorPosition.X = 0;
-		CursorPosition.Y += 8;
-	}
+	Print(IntToHex((UINT64)bootInfo->RSDP), White);
+
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	PutChar(*((UCHAR*)bootInfo->RSDP + i));
+	//}
+
+	PrepareACPI(bootInfo);
+	Next();
 
 	UINT64 mapEntries = bootInfo->MemoryMapSize / bootInfo->MemoryMapDescSize;
 	Print("MapSize: ", White);
@@ -64,23 +85,14 @@ void main(BootInfo* bootInfo)
 	Print("MapBase: ", White);
 	Print(IntToHex((UINT64)bootInfo->MemoryMap), White);
 	Print("Cycle:", White);
-	for (UINT i = 0; i < mapEntries; i++)
+	/*for (UINT i = 0; i < mapEntries; i++)
 	{
 		Print("Ciklus: ", White);
 		Print(IntToString(i), White);
 		EFI_MEMORY_DESCRIPTOR* desc = (EFI_MEMORY_DESCRIPTOR*)((UINT64)bootInfo->MemoryMap + (i * bootInfo->MemoryMapDescSize));
 		Print(EfiMemoryTypeString[desc->Type], White);
+		Print(IntToString(desc->NumberOfPages), White);
 		CursorPosition.X = 0;
 		CursorPosition.Y += 8;
-	}
-	
-	Print("ASD!", White);
-
-	// MEMORY ALLOCATION TESTING
-	//Init(100000, 10000);
-	
-	//VOID* fasz = Alloc(64);
-	//fasz = Alloc(64);
-
-	//DrawString(IntToString((INT64)&fasz), 60, 30, White);
+	}*/
 }

@@ -37,4 +37,6 @@ VOID DrawPixel(INT x, INT y, UINT32 color);
 VOID DrawChar(CHAR c, INT x, INT y, UINT32 color);
 VOID DrawString(const CHAR* str, INT x, INT y, UINT32 color);
 
+VOID PutChar(CHAR c);
 VOID Print(const CHAR* str, UINT32 color);
+VOID Next();

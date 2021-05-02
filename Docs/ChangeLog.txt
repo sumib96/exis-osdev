@@ -1,5 +1,5 @@
 2021.Maj
-- 
+- BootInfo address is passed from UEFIEXL just fine, using MSABI calling convention on EXIS Main function
 
 2021.Mar
 - Working on the MemoryMap, getting the informations from UEFI for later development, we need

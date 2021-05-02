@@ -92,6 +92,12 @@ VOID DrawString(const CHAR* str, INT x, INT y, UINT32 color) {
     }
 }
 
+VOID PutChar(CHAR c)
+{
+    DrawChar(c, CursorPosition.X, CursorPosition.Y, ColorToUINT32(255, 255, 255, 255));
+    CursorPosition.X += CHAR_WIDTH;
+}
+
 VOID Print(const CHAR* str, UINT32 color) {
     while (*str != 0) {
         DrawChar(*str++, CursorPosition.X, CursorPosition.Y, color);
@@ -102,4 +108,10 @@ VOID Print(const CHAR* str, UINT32 color) {
             CursorPosition.Y += CHAR_HEIGHT;
         }
     }
+}
+
+VOID Next()
+{
+    CursorPosition.X = 0;
+    CursorPosition.Y += CHAR_HEIGHT;
 }
