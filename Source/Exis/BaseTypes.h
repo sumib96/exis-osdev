@@ -4,7 +4,7 @@
 
 #pragma once
 
-typedef void                    VOID;
+#define VOID void
 
 typedef unsigned char           UCHAR;      // 1 byte
 typedef unsigned short          USHORT;     // 2 byte
@@ -25,3 +25,6 @@ typedef long long               INT64;      // 8 byte
 // Plus
 typedef UCHAR                   UINT8;      // 1 byte
 typedef USHORT                  UINT16;     // 2 byte
+
+// Arch dependent!
+typedef UINT64                  USIZE;     // 8 byte

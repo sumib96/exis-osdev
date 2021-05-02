@@ -1,4 +1,28 @@
-2020.Maj
-- x86-64 Paging implementation / initialization for Exis kernel module
+2021.Maj
+- 
+
+2021.Mar
+- Working on the MemoryMap, getting the informations from UEFI for later development, we need
+MemoryMap, FrameBuffer informations, ACPI tables to get start with more advanced kernel development
+- Having trouble with MSVC compiled (MSABI) UEFI bootloader calling convention to LLVM ELF target (SYSV ABI) target,
+as I dont want to make own linker or any custum calling convention / executable format yet (bcs we lose time for nonsense)
+also I dont need to reinvent the wheel so, must use what we have and adapt to it, I want to use LLVM as the main
+compiler for the whole project by standard in the future, I think its the best compiler right now for my goals
+- I have to figure out how to use C calling convention for my kernel in ELF format just for fun or call the SYSV function with attribute
+from the UEFIEXL and use sysv, but I dont want to use sysv bcs its not that what I want by my other kernel principles
+
+2021.Feb
+EXIS (Main Kernel Module)
+- Fixed framebuffer funcionality, color conversion to UINT32
+- Started memory allocators for generalization
+
 2020.Jul
-- UEFIEXL, file loader module
+UEFIEXL (UEFI Exis Loader)
+- File loader module, ELF
+- Fixed MemoryMap request and ExitBootServices
+- GOP initialization module, framebuffer address is hardcoded in the kernel until it gets more advanced
+
+2020.Maj
+- Base OS ideas and principles have been decided
+- x86-64 Paging implementation / initialization for Exis kernel module (discontiuned)
+- Hardware Specific Interface, (discontiuned until the base funcionality is done)

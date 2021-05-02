@@ -3,18 +3,15 @@
 
 // Help: https://gist.github.com/bert/1085538
 
-UINT32 *FramebufferAddress = (UINT32*)0xE0000000;
+UINT32 *FramebufferAddress = (UINT32*)0xC0000000;
 
 // GOP supports these: BGRR (BGRA), RGBR (RGBA) formats, so we have to convert color values
 // BGRA is the current
 // PixelBlueGreenRedReserved8BitPerColor << We have this mode on QEMU, 800 x 600
 // PixelRedGreenBlueReserved8BitPerColor
 // 
-UINT32 ColorToUint32(UINT8 A, UINT8 B, UINT8 G, UINT8 R) {
-	//UINT32 Result = (UINT32)R << 16 | (UINT32)G << 8 | (UINT32)B | (UINT32);
-
-	UINT32 Result = (UINT8)(A << 24) + (UINT8)(B << 16) + (UINT8)(G << 8) + (UINT8)R;
-	return Result;
+UINT32 ColorToUINT32(UINT8 B, UINT8 G, UINT8 R, UINT8 A) {
+	return B | (G << 8) | (R << 16) | (A << 24);
 }
 
 VOID ClearScreen(UINT32 Color)
@@ -25,9 +22,9 @@ VOID ClearScreen(UINT32 Color)
 	}
 }
 
-VOID SetPixel (int X, int Y, UINT32 Color)
+VOID SetPixel(int X, int Y, UINT32 Color)
 {
-	FramebufferAddress[(Y * 800) + X] = Color;
+	*(UINT32*)(X + (Y * 800) + FramebufferAddress) = Color;
 }
 
 VOID DrawLine(INT x0, INT y0, INT x1, INT y1, UINT32 Color)
