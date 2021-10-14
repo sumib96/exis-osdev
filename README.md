@@ -1,6 +1,9 @@
 # Exis Project
 Shy try for a modern Operating System.
 
+!2021 notes:
+!stop trying to make the perfect kernel and operation system, maybe its not possible? :/ we dont have infinity time to think and code. thx to myself.
+
 # Design Goals (Concepts)
 - Portable (meant both, new arch portability, and capability to run from any entity)
 - Secure
