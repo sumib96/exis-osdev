@@ -28,7 +28,7 @@ typedef struct {
     UINT Y;
 } Point;
 
-Point CursorPosition;
+static Point CursorPosition;
 
 const CHAR* IntToString(INT64 Value);
 const CHAR* IntToHex(UINT64 Value);

@@ -1,5 +1,5 @@
 #include "ACPI.h"
-#include "..\Debug\Console.h"
+//#include "..\Debug\Console.h"
 
 
 VOID* FindTable(ACPI_SDT_HEADER* sdtHeader, CHAR* signature) {

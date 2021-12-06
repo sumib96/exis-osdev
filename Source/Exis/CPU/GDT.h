@@ -30,6 +30,6 @@ typedef struct GDT
     GDT_ENTRY KernelData;
 } __attribute__((packed)) GDT;
 
-GDT_DESCRIPTOR_64 gdtPtr;
+static GDT_DESCRIPTOR_64 gdtPtr;
 
 void LoadGDT();
