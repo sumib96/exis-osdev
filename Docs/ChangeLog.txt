@@ -1,3 +1,15 @@
+2021.June
+- http://www.osdever.net/bkerndev/Docs/gdt.htm
+- GDT
+- Assembly Lib ideas:
+https://github.com/tianocore/edk2/tree/master/MdePkg/Library/BaseLib/X64
+https://github.com/rust-osdev/x86_64/blob/master/src/asm/asm.s
+https://www.felixcloutier.com/x86/sgdt
+https://newbedev.com/what-does-the-0x80-port-address-connect-to
+
+x64 Arch overview, best so far:
+https://www.codeproject.com/Articles/1273844/The-Intel-Assembly-Manual-3
+
 2021.Maj
 - BootInfo address is passed from UEFIEXL just fine, using MSABI calling convention on EXIS Main function
 

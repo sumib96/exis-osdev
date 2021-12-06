@@ -4,6 +4,7 @@
 #include "Debug\Console.h"
 #include "Memory\Alloc.h"
 #include "ACPI\ACPI.h"
+#include "CPU\GDT.h"
 
 typedef struct {
   UINT32 Type;
@@ -42,6 +43,8 @@ VOID PrepareACPI(BootInfo* bootInfo)
 
 void EAPI main(BootInfo* bootInfo)
 {
+	LoadGDT();
+	
 	UINT32 White = ColorToUINT32(255, 255, 255, 255);
 	UINT32 Black = ColorToUINT32(0, 0, 0, 0);
 	//UINT32 Red = ColorToUINT32(0, 0, 255, 0);
