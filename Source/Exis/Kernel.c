@@ -48,7 +48,7 @@ void EAPI main(BootInfo* bootInfo)
 	UINT32 White = ColorToUINT32(255, 255, 255, 255);
 	UINT32 Black = ColorToUINT32(0, 0, 0, 0);
 	//UINT32 Red = ColorToUINT32(0, 0, 255, 0);
-	//UINT32 Green = ColorToUINT32(0, 255, 0, 0);
+	UINT32 Green = ColorToUINT32(0, 255, 0, 0);
 	//UINT32 Blue = ColorToUINT32(255, 0, 0, 0);
 
 	ClearScreen(Black);
@@ -96,14 +96,25 @@ void EAPI main(BootInfo* bootInfo)
 	Print("MapBase: ", White);
 	Print(IntToHex((UINT64)bootInfo->MemoryMap), White);
 	Print("Cycle:", White);
-	/*for (UINT i = 0; i < mapEntries; i++)
+
+	Next();
+
+	//int x, y;
+	for (UINT i = 0; i < mapEntries; i++)
 	{
-		Print("Ciklus: ", White);
-		Print(IntToString(i), White);
+		//Print("Ciklus: ", White);
+		//Print(IntToString(i), White); Print(" ", White);
 		EFI_MEMORY_DESCRIPTOR* desc = (EFI_MEMORY_DESCRIPTOR*)((UINT64)bootInfo->MemoryMap + (i * bootInfo->MemoryMapDescSize));
-		Print(EfiMemoryTypeString[desc->Type], White);
-		Print(IntToString(desc->NumberOfPages), White);
-		CursorPosition.X = 0;
-		CursorPosition.Y += 8;
-	}*/
+		if (desc->Type == 7) {
+			Print("X", Green);
+		}
+		else {
+			Print("0", White);
+		}
+
+		//Print(EfiMemoryTypeString[desc->Type], White); Print(" ", White);
+		//Print(IntToString(desc->Type), White); Print(" ", White);
+		//Print(IntToString(desc->NumberOfPages), White);
+		//Next();
+	}
 }

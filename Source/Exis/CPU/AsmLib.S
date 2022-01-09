@@ -1,6 +1,6 @@
 //; retq does the same as ret, just the name is different for convention on x64 (AT&T), pops quadword from the stack to %rip and return
 //; %rcx is the first function argument on x64 msabi convention, for output
-//; I dont know what asm syntax should I use
+//; I dont know what asm syntax should I use, doesnt matter anyway
 
 
 

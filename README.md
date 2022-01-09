@@ -11,12 +11,21 @@ Shy try for a modern Operating System.
 - Generalized interfaces and IT protocols
 - Component based build system
 - Prepared for future data management
+- Code templates and code generation for different scheduling methods and for the generalized kernel api
+- Logic table for all scheduling methods based on timing
+- The build system would be more robust but, always stay with portable and undependent source code files / headers,
+- so make sure it has barebones and generation levels for generating any type of kernel / system images for a choosen job or function
 
 # UI (HumanFlowUI)
 - Independent UI system from the application source
 - Cross platform / arch
 - The ability to develop the UI framework without touching the app logic sources
 - Backward and forward compatibility?
+
+# DropLex System
+- Multiplatform JIT
+- Time reference based thread optimalization, prediction when operations / functions will finish,
+- so minimalizing waiting times on droplexes (later explained)
 
 # Source Directory Description
 ## Boot

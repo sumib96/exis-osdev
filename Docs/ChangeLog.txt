@@ -38,3 +38,27 @@ UEFIEXL (UEFI Exis Loader)
 - Base OS ideas and principles have been decided
 - x86-64 Paging implementation / initialization for Exis kernel module (discontiuned)
 - Hardware Specific Interface, (discontiuned until the base funcionality is done)
+
+2021.Christmas
+- Refactor the build, save the old kernel if later something goes wrong
+- New working scenario: Win env., LLVM13 with run / build scripts, VSCode, for bootloader: VSCommunity2019? relative paths from all
+the Repo's root for all scripts (for later automation)
+
+2022.Jan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

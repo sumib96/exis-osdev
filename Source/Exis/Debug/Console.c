@@ -4,6 +4,8 @@
 	
 	Integer to string:
 	https://clc-wiki.net/wiki/K&R2_solutions:Chapter_3:Exercise_4
+
+    Random tips: for checking a particular set bit , we can do int bit = number&(1<<bitpos);   cout<<bit<<endl;
 */
 
 #include "Console.h"
