@@ -81,33 +81,57 @@ VOID DrawChar(CHAR c, INT x, INT y, UINT32 color) {
     for (j = 0; j < CHAR_WIDTH; j++) {
         for (i = 0; i < CHAR_HEIGHT; i++) {
             if (chr[j] & (1 << i)) {
-                DrawPixel(x + j, y + i, color);
+                DrawPixel(x + j * 2, y + i * 2, color);
+                DrawPixel(x + 1 + j * 2, y + 1 + i * 2, color);
+                DrawPixel(x + 1 + j * 2, y + i * 2, color);
+                DrawPixel(x + j * 2, y + 1 + i * 2, color);
             }
         }
     }
 }
 
+/*VOID DrawChar(CHAR c, INT x, INT y, UINT32 color) {
+    UINT8 i, j;
+
+    c = c & 0x7F;
+    if (c < ' ') {
+        c = 0;
+    } else {
+        c -= ' ';
+    }
+
+    const UINT8* chr = &font2[(UCHAR)c * CHAR_HEIGHT];
+
+    for (j = 0; j < CHAR_WIDTH; j++) {
+        for (i = 0; i < CHAR_HEIGHT; i++) {
+            if (chr[j] & (1 << i)) {
+                DrawPixel(x + j, y + i, color);
+            }
+        }
+    }
+}*/
+
 VOID DrawString(const CHAR* str, INT x, INT y, UINT32 color) {
     while (*str) {
         DrawChar(*str++, x, y, color);
-        x += CHAR_WIDTH;
+        x += CHAR_WIDTH * 2;
     }
 }
 
 VOID PutChar(CHAR c)
 {
     DrawChar(c, CursorPosition.X, CursorPosition.Y, ColorToUINT32(255, 255, 255, 255));
-    CursorPosition.X += CHAR_WIDTH;
+    CursorPosition.X += CHAR_WIDTH * 2;
 }
 
 VOID Print(const CHAR* str, UINT32 color) {
     while (*str != 0) {
         DrawChar(*str++, CursorPosition.X, CursorPosition.Y, color);
-        CursorPosition.X += CHAR_WIDTH;
+        CursorPosition.X += CHAR_WIDTH * 2;
 
-        if(CursorPosition.X + CHAR_WIDTH > FRAMEBUFFER_WIDTH) {
+        if(CursorPosition.X + CHAR_WIDTH * 2 > FRAMEBUFFER_WIDTH) {
             CursorPosition.X = 0;
-            CursorPosition.Y += CHAR_HEIGHT;
+            CursorPosition.Y += CHAR_HEIGHT * 2;
         }
     }
 }
@@ -115,5 +139,5 @@ VOID Print(const CHAR* str, UINT32 color) {
 VOID Next()
 {
     CursorPosition.X = 0;
-    CursorPosition.Y += CHAR_HEIGHT;
+    CursorPosition.Y += CHAR_HEIGHT * 2;
 }

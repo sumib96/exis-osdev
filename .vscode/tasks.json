@@ -4,9 +4,28 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
             "type": "shell",
-            "command": ".\build"
+            "label": "Build Exis",
+            "command": "${workspaceFolder}/Source/Exis/build.bat",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/Source/Exis"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Run Exis",
+            "command": "${workspaceFolder}/Source/Exis/run.bat",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/Source/Exis"
+            }
         }
     ]
 }

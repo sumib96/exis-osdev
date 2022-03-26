@@ -5,14 +5,7 @@
 #include "Memory\Alloc.h"
 #include "ACPI\ACPI.h"
 #include "CPU\GDT.h"
-
-typedef struct {
-  UINT32 Type;
-  UINT64 PhysicalStart;
-  UINT64 VirtualStart;
-  UINT64 NumberOfPages;
-  UINT64 Attribute;
-} EFI_MEMORY_DESCRIPTOR;
+#include "Memory\Allocator\PageFrameAllocator.h"
 
 #define EAPI __attribute((ms_abi)) // XD
 
@@ -48,7 +41,7 @@ void EAPI main(BootInfo* bootInfo)
 	UINT32 White = ColorToUINT32(255, 255, 255, 255);
 	UINT32 Black = ColorToUINT32(0, 0, 0, 0);
 	//UINT32 Red = ColorToUINT32(0, 0, 255, 0);
-	UINT32 Green = ColorToUINT32(0, 255, 0, 0);
+	//UINT32 Green = ColorToUINT32(0, 255, 0, 0);
 	//UINT32 Blue = ColorToUINT32(255, 0, 0, 0);
 
 	ClearScreen(Black);
@@ -76,45 +69,40 @@ void EAPI main(BootInfo* bootInfo)
 	CursorPosition.X = 0;
     CursorPosition.Y = 0;
 
+	Print("ACPI RSDP table address: ", White);
 	Print(IntToHex((UINT64)bootInfo->RSDP), White);
 
 	//for (int i = 0; i < 100; i++)
 	//{
 	//	PutChar(*((UCHAR*)bootInfo->RSDP + i));
 	//}
-
+	Next();
+	Print("ACPI MCFG table address: ", White);
 	PrepareACPI(bootInfo);
 	Next();
 
-	UINT64 mapEntries = bootInfo->MemoryMapSize / bootInfo->MemoryMapDescSize;
-	Print("MapSize: ", White);
-	Print(IntToString(bootInfo->MemoryMapSize), White);
-	Print("MapDescSize: ", White);
-	Print(IntToString(bootInfo->MemoryMapDescSize), White);
-	Print("mapEntries: ", White);
-	Print(IntToString(mapEntries), White);
-	Print("MapBase: ", White);
-	Print(IntToHex((UINT64)bootInfo->MemoryMap), White);
-	Print("Cycle:", White);
+	UINT64 memSize = GetMemSize(bootInfo);
+	UINT64 test = SetBitmap(bootInfo);
+	Print("Free memory size: ", White);
+	Print(IntToString(memSize), White);
+	Next();
+	Print("BitMap address: ", White);
+	Print(IntToString(test), White);
 
 	Next();
+	UINT8 data = 4;
+	UINT8 val = GetBit(data, 3);
+	Print("Bit testing: ", White);
+	Print(IntToString(val), White);
 
-	//int x, y;
-	for (UINT i = 0; i < mapEntries; i++)
+	Next(); Next();
+	
+	Print("Frame allocator test: ", White);
+	for (UINT64 i = 0; i < 10; i++)
 	{
-		//Print("Ciklus: ", White);
-		//Print(IntToString(i), White); Print(" ", White);
-		EFI_MEMORY_DESCRIPTOR* desc = (EFI_MEMORY_DESCRIPTOR*)((UINT64)bootInfo->MemoryMap + (i * bootInfo->MemoryMapDescSize));
-		if (desc->Type == 7) {
-			Print("X", Green);
-		}
-		else {
-			Print("0", White);
-		}
-
-		//Print(EfiMemoryTypeString[desc->Type], White); Print(" ", White);
-		//Print(IntToString(desc->Type), White); Print(" ", White);
-		//Print(IntToString(desc->NumberOfPages), White);
-		//Next();
+		void* address = NextFreeFrame();
+		Print(IntToHex((UINT64)address), White);
+		Next();
 	}
+	
 }

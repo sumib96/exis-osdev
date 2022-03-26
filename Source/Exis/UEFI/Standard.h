@@ -7,6 +7,25 @@
 
 #include "..\BaseTypes.h"
 
+/*const char* EfiMemoryTypeString[] = {
+  "EfiReservedMemoryType",
+  "EfiLoaderCode",
+  "EfiLoaderData",
+  "EfiBootServicesCode",
+  "EfiBootServicesData",
+  "EfiRuntimeServicesCode",
+  "EfiRuntimeServicesData",
+  "EfiConventionalMemory",
+  "EfiUnusableMemory",
+  "EfiACPIReclaimMemory",
+  "EfiACPIMemoryNVS",
+  "EfiMemoryMappedIO",
+  "EfiMemoryMappedIOPortSpace",
+  "EfiPalCode",
+  "EfiPersistentMemory",
+  "EfiMaxMemoryType"
+};*/
+
 typedef enum {
   EfiReservedMemoryType,
   EfiLoaderCode,
