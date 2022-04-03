@@ -24,4 +24,4 @@ C:\Users\MainDev\Documents\GitHub\exis-osdev\Source\Exis>ld.lld --strip-all -nos
 C:\Users\MainDev\Documents\GitHub\exis-osdev\Source\Exis>
 
 ## First kernel build was tested with LLVM10 (those global structures changed to static because it didnt compile, strange error)
-Also I include the current .elf files whats tested with a messy PageFrameAllocator, also the last LLVM10 build kernel.elf!
+Also I include the current .elf files whats tested with a messy PageFrameAllocator, also the last LLVM10 build kernel.elf

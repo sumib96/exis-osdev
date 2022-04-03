@@ -87,7 +87,7 @@ void EAPI main(BootInfo* bootInfo)
 	Print(IntToString(memSize), White);
 	Next();
 	Print("BitMap address: ", White);
-	Print(IntToString(test), White);
+	Print(IntToHex(test), White);
 
 	Next();
 	UINT8 data = 4;
